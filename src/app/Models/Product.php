@@ -16,7 +16,6 @@ class Product extends Model
         'product_name',
         'product_description',
         'product_image',
-        'category_id',
         'brand_name',
         'product_condition',
         'price',
@@ -35,7 +34,7 @@ class Product extends Model
 
     public function favorites()
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorite_product');
     }
 
     public function categories()

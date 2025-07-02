@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+}
+
+.header {
+    background-color: #000;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 10px;
+    justify-content: center;
+}
+
+.header__inner {
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header__logo {
+    position: absolute;
+    left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+.header-nav {
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    margin: 0;
+    padding: 0;
+}

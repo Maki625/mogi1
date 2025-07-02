@@ -1,0 +1,57 @@
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+label {
+    width: auto;
+    display: inline-block;
+    font-size: 17px;
+    font-style: bold;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.send-btn {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 65px;
+    width: 100%;
+    margin-top: 80px;
+    font-style: bold;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: red;
+}
+
+.login-url {
+    display: flex;
+        justify-content: center;
+        /* 横方向 */
+        align-items: center;
+        margin-top: 30px;
+}
+
+.error-message {
+    margin-top: 8px;
+    color: #FF9494;
+    grid-column: 2;
+}
