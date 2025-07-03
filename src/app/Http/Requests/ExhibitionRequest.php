@@ -13,7 +13,7 @@ class ExhibitionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,29 @@ class ExhibitionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_name'          => 'required|string|max:255',
+            'product_description'   => 'required|string|max:255',
+            'product_image'         => 'required|file|mimes:jpeg,png',
+            'category'              => 'required',
+            'product_condition'     => 'required',
+            'price'                 => 'required|numeric|min:0',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'product_name.required'         => '商品名を入力してください',
+            'product_description.required'  => '商品説明を入力してください',
+            'product_description.max'       => '255文字以内で入力してください',
+            'product_image.required'        => '商品画像を登録してください',
+            'product_image.mimes'           => '「.png」または「.jpeg」形式でアップロードしてください',
+            'category.required'             => 'カテゴリーを選択してください',
+            'product_condition.required'    => '商品状態を選択してください',
+            'price.required'                => '値段を入力してください',
+            'price.numeric'                 => '数値で入力してください',
+            'price.min'                     => '0円以上で入力してください',
+        ];
+    }
+
 }

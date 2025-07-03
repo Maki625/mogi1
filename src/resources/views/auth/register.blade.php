@@ -15,47 +15,28 @@
 </ul>
 @endif
 
-<form method="POST" action="/register">
+<form class="form" method="POST" action="/register">
   @csrf 
   
   <div class="form-group">
                 <label>ユーザー名</label>
-                <input type="text" name="name"  value="{{ old('name') }}">
-            <p class="error-message">
-          @error('name')
-          {{ $message }}
-          @enderror
-        </p>
+                <input type="text" name="username"  value="{{ old('username') }}">
+
 </div>
 
 <div class="form-group">
                 <label>メールアドレス</label>
-                <input type="text" name="name" value="{{ old('name') }}">
-            <p class="error-message">
-          @error('name')
-          {{ $message }}
-          @enderror
-        </p>
+                <input type="text" name="email" value="{{ old('email') }}">
 </div>
 
 <div class="form-group">
                 <label>パスワード</label>
-                <input type="password" name="password" value="{{ old('name') }}">
-            <p class="error-message">
-          @error('name')
-          {{ $message }}
-          @enderror
-        </p>
+                <input type="password" name="password" value="">
 </div>
 
 <div class="form-group">
                 <label>確認用パスワード</label>
-                <input type="password" name="password_confirmation" value="{{ old('name') }}">
-            <p class="error-message">
-          @error('name')
-          {{ $message }}
-          @enderror
-        </p>
+                <input type="password" name="password_confirmation" value="">
 </div>
 
 <button type="submit" name="send" class="send-btn" value="create">登録する</button>

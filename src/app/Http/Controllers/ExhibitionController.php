@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class ExhibitionController extends Controller
 {
-    //
+    public function create() {
+
+        return view('exhibition');
+    }
 }

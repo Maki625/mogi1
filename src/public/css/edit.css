@@ -19,6 +19,19 @@
     margin-top: 32px;
 }
 
+.custom-file-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background: red;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
 label {
     width: auto;
     display: inline-block;
@@ -29,7 +42,7 @@ label {
     white-space: nowrap;
 }
 
-.send-btn {
+.update-btn {
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -40,12 +53,5 @@ label {
     font-size: 16px;
     cursor: pointer;
     background-color: red;
-}
-
-.login-url {
-    display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
 }
 
