@@ -16,8 +16,8 @@
 @endif
 
 <form class="form" method="POST" action="/register">
-  @csrf 
-  
+  @csrf
+
   <div class="form-group">
                 <label>ユーザー名</label>
                 <input type="text" name="username"  value="{{ old('username') }}">

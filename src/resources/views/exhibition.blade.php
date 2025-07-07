@@ -4,8 +4,8 @@
 
 <link href="{{ asset('css/exhibition.css') }}" rel="stylesheet">
 
-    <div class="container">
-        <h2 class="page-title">商品の出品</h2>
+<div class="container">
+  <h2 class="page-title">商品の出品</h2>
 
 @if (count($errors) > 0)
 <ul>
@@ -32,10 +32,10 @@
                 <label>商品の状態</label>
                   <select name="condition">
                     <option value="">選択してください</option>
-                    <option value="good" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
-                    <option value="" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                    <option value="" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
-                    <option value="" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
+                    <option value="1" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
+                    <option value="2" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                    <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                    <option value="4" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
                   </select>
 </div>
 

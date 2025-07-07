@@ -1,0 +1,40 @@
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.image-group {
+    width: 50px;
+}
+
+.show-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+label {
+    width: auto;
+    display: inline-block;
+    font-size: 17px;
+    font-style: bold;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.purchase-btn,
+.comment-btn {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 65px;
+    width: 100%;
+    margin-top: 80px;
+    font-style: bold;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: red;
+}

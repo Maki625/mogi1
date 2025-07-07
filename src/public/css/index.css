@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    width: 70%;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.card-link {
+    width: 30%;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card {
+    cursor: pointer;
+    border: 1px solid #e9eaea;
+    border-radius: 3px;
+    height: 100%;
+}
+
+.text-box {
+    padding: 10px 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.product-img {
+    text-align: center;
+}
+
+.name {
+    font-size: 15px;
+}
