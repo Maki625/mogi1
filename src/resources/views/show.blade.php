@@ -1,4 +1,5 @@
 <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+
 <div class="container">
     <div class="image-group">
     <img src="{{ asset($product->product_image) }}" alt="商品画像">
@@ -16,8 +17,7 @@
         <a href="#" class="comment-button">💬 コメント</a>
         <p class="comment-count">{{ $product->comment_count }}</p>
 
-        <form action="/purchase/{item_id}" method="POST">
-            @csrf
+        <form action="/purchase/{{ $product->id }}" method="GET">
             <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入手続きへ</button>
         </form>
 

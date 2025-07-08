@@ -33,7 +33,10 @@ Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store']);
 Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
 
 //商品購入画面
-Route::post('/purchase/{item_id}', [PurchaseController::class, 'show']);
+Route::get('/purchase/{item_id}', [PurchaseController::class, 'show']);
+
+//商品購入処理
+Route::post('/', [PurchaseController::class,'store']);
 
 //商品出品画面
 Route::get('/sell', [ExhibitionController::class, 'create']);
