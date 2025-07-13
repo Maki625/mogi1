@@ -32,7 +32,7 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function favorites()
+    public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorite_product');
     }

@@ -7,9 +7,14 @@ use App\Models\Product;
 
 class ItemController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $query = Product::query();
 
-        $products = Product::all();
+        if ($request->filled('keyword')) {
+            $query->where('product_name', 'like', '%' . $request->input('keyword') . '%');
+        }
+
+        $products = $query->get();
 
         $conditions = [
             1 => '良好',

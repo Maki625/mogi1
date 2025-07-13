@@ -1,7 +1,15 @@
-@extends('layouts.app')
+<link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    @yield('css')
 
-@section('content')
+<header class="header">
+    <div class="header__inner">
+        <a class="header__logo" href="/">
+        <img src="{{ asset('storage/images/logo.svg') }}" alt="logo">
+        </a>
+</header>
 
+<main>
 <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
     <div class="container">
@@ -16,7 +24,7 @@
 @endif
 
 <form class="form" method="POST" action="/login">
-  @csrf 
+  @csrf
 
 <div class="form-group">
                 <label>メールアドレス</label>
@@ -33,5 +41,5 @@
 <a class="register-url" href="/register">会員登録はこちら</a>
 
 </form>
+</main>
 
-@endsection

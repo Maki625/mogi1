@@ -1,6 +1,7 @@
-商品一覧画面
+@extends('layouts.app')
 
-
+@section('content')
+<main>
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
 <div class="wrapper">
@@ -17,3 +18,6 @@
     </a>
 @endforeach
 </div>
+</main>
+
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link href="{{ asset('css/show.css') }}" rel="stylesheet">
 
 <div class="container">
@@ -38,7 +41,6 @@
         <button type="submit" name="comment" class="comment-btn" value="comment">コメントを送信する</button>
 
     </div>
-
-
-
 </div>
+
+@endsection

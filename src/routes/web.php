@@ -26,8 +26,11 @@ Route::get('/', [ItemController::class, 'index']);
 //商品詳細画面
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
-//いいね処理
+//いいね登録処理
 Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store']);
+
+//いいね削除処理
+Route::delete('item/{item_id}/favorite', [FavoriteController::class, 'destroy']);
 
 //コメント送信処理
 Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
@@ -43,6 +46,9 @@ Route::get('/sell', [ExhibitionController::class, 'create']);
 
 //商品出品処理
 Route::post('/sell', [ExhibitionController::class, 'store']);
+
+//マイページトップ
+Route::get('/mypage', [ProfileController::class, 'show']);
 
 //プロフィール編集画面
 Route::get('/mypage/profile', [ProfileController::class, 'edit']);

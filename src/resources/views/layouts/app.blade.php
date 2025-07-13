@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>coachtech</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
-</head>
 
 <body>
 <header class="header">
     <div class="header__inner">
-        <a class="header__logo" href="/products">
-          coachtech
+        <a class="header__logo" href="/">
+        <img src="{{ asset('storage/images/logo.svg') }}" alt="logo">
         </a>
+
+        <form class="header__search" action="/" method="GET">
+            <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="何をお探しですか？">
+        </form>
+
+        <nav class="header__nav">
+            @auth
+                <a href="/logout"> ログアウト</a>
+            @endauth
+
+            @guest
+                <a href="/login">ログイン</a>
+            @endguest
+
+            <a href="/mypage">マイページ</a>
+            <form class="exhibition-button" action="/sell" method="GET">
+                <button type="submit" class="exhibition-button">出品</button>
+            </form>
+        </nav>
     </div>
 </header>
 
@@ -22,4 +34,3 @@
     @yield('content')
 </main>
 </body>
-</html>
