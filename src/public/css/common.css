@@ -64,6 +64,18 @@ body {
     font-size: 16px;
 }
 
+.logout-btn {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 15px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        margin: 0;
+}
+
 .exhibition-button {
     background-color: #fff;
     padding: 5px 6px;

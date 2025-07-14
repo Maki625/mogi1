@@ -42,3 +42,28 @@ label {
     background-color: red;
 }
 
+.category-group input[type="checkbox"] {
+    display: none;
+}
+
+.category-group label {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    transition: all 0.2s ease;
+}
+
+.category-group label:hover {
+    background-color: #e0e0e0;
+}
+
+.category-group input[type="checkbox"]:checked+label {
+    background-color: red;
+    color: #fff;
+    border-color: red;
+}
+

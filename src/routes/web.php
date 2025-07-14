@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 
@@ -49,6 +50,8 @@ Route::post('/sell', [ExhibitionController::class, 'store']);
 
 //マイページトップ
 Route::get('/mypage', [ProfileController::class, 'show']);
+
+Route::post('/register', [RegisterController::class, 'store']);
 
 //プロフィール編集画面
 Route::get('/mypage/profile', [ProfileController::class, 'edit']);

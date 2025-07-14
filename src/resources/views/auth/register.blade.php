@@ -48,8 +48,8 @@
 </div>
 
 <button type="submit" name="send" class="send-btn" value="create">登録する</button>
+</form>
 
 <a class="login-url" href="/login">ログインはこちら</a>
 
-</form>
 </main>

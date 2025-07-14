@@ -15,7 +15,12 @@
 
         <nav class="header__nav">
             @auth
-                <a href="/logout"> ログアウト</a>
+            <form id="logout-form" action="/logout" method="POST">
+                @csrf
+                <button type="submit" class="logout-btn">
+                ログアウト
+            </button>
+            </form>
             @endauth
 
             @guest
