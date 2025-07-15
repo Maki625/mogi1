@@ -1,10 +1,10 @@
 .wrapper {
     display: flex;
-    width: 70%;
+    width: 95%;
     gap: 20px;
     flex-wrap: wrap;
     align-items: flex-start;
-    margin-left: auto;
+    margin: 0 auto;
 }
 
 .product-img img {
@@ -14,7 +14,7 @@
 
 
 .card-link {
-    width: 30%;
+    width: 23%;
     text-decoration: none;
     color: inherit;
     display: block;

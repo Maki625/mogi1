@@ -3,16 +3,27 @@
     margin: 0 auto;
     padding: 40px 20px;
     box-sizing: border-box;
+    display: flex;
+
 }
 
 .image-group {
-    width: 50px;
+    width: 300px;
+    margin-top: 30px;
+    margin-right: 50px;
+}
+
+.image-group img{
+    width: 100%;
+    display: block;
+    height: auto;
 }
 
 .show-group {
+    flex-wrap: wrap;
     display: flex;
     flex-direction: column;
-    margin-top: 32px;
+    margin-left: auto;
 }
 
 label {
