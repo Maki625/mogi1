@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
@@ -58,3 +59,6 @@ Route::get('/mypage/profile', [ProfileController::class, 'edit']);
 
 //プロフィール更新処理
 Route::put('/mypage/profile', [ProfileController::class, 'update']);
+
+//住所変更画面
+Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit']);
