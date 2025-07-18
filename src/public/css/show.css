@@ -31,9 +31,59 @@ label {
     display: inline-block;
     font-size: 17px;
     font-style: bold;
-    margin-top: 10px;
-    margin-bottom: 8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     white-space: nowrap;
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* 間隔を調整 */
+}
+
+.fav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #000;
+    padding: 0;
+}
+
+.fav-button.active {
+    color: gold;
+}
+
+.category,
+.condition {
+    font-weight: bold;
+
+}
+
+.comment-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.brand_name {
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.price {
+    font-size: 25px;
+}
+
+.text-area {
+    width: 100%;
+    height: 300px;
 }
 
 .purchase-btn,

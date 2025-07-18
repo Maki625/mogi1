@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FavoriteController;
 
 
 

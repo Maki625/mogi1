@@ -14,31 +14,53 @@
         <p class="brand_name">{{ $product->brand_name ?? '' }}</p>
         <p class="price">¥{{ $product->price }}(税込)</p>
 
-        <a href="#" class="fav-button">☆ いいね</a>
+        <div class="button-wrapper">
+        @if(auth()->check() && auth()->user()->favorites->contains($product->id))
+        <form action="/item/{{ $product->id }}/favorite" method="POST">
+        @csrf
+        @method('DELETE')
+            <button type="submit" class="fav-button active">★</button>
+        </form>
+        @else
+        {{-- 未いいね（色なし） --}}
+            <form action="{{ url('/item/' . $product->id . '/favorite') }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="fav-button">☆</button>
+            </form>
+        @endif
+
         <div class="fav-count">{{ $product->like_count }}</div>
 
-        <a href="#" class="comment-button">💬 コメント</a>
+        <a href="#" class="comment-button">💬</a>
         <p class="comment-count">{{ $product->comment_count }}</p>
+        </div>
 
         <form action="/purchase/{{ $product->id }}" method="GET">
             <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入手続きへ</button>
         </form>
 
-        <h2 class="description-title">商品説明</h2>
+        <h3 class="description-title">商品説明</h3>
         <p class="description">{{ $product->product_description }}</p>
 
-        <div class="condition-title">商品の情報
-        <span class="category">カテゴリー</span>
-        <span class="condition">商品の状態</span>
+        <h3 class="condition-title">商品の情報</h3>
+        <div class="category">カテゴリー</div>
+        <div class="condition">商品の状態</div>
         <span class="value">{{ $product->condition_label }}</span>
-        </div>
 
-        <h2 class="comment-title">コメント</h2>
         <span class="username">{{ $product->username }}</span>
-        <span class="comment">商品へのコメント</span>
-        <input type="text-box">
 
-        <button type="submit" name="comment" class="comment-btn" value="comment">コメントを送信する</button>
+    <form action="/item/{{ $product->id }}/comment" method="POST">
+    @csrf
+
+        <h3 class="comment-title">商品へのコメント</h3>
+
+        <textarea name="comment" class="text-area">{{ old('comment') }}</textarea>
+        @error('comment')
+        <p class="error">{{ $message }}</p>
+        @enderror
+
+        <button type="submit" class="comment-btn">コメントを送信する</button>
+    </form>
 
     </div>
 </div>

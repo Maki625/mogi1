@@ -9,6 +9,9 @@ class FavoriteController extends Controller
 {
     public function store(Product $product)
     {
+        if (!auth()->check()) {
+            return back();
+        }
         auth()->user()->favorites()->attach($product->id);
         return back();
     }

@@ -37,7 +37,6 @@
                 <input type="text" name="building_name" value="">
 </div>
 
-
 <button type="submit" name="update" class="update-btn" value="update">更新する</button>
 
 </form>
