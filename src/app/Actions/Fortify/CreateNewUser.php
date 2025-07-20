@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Http\Requests\RegisterRequest;
 
+
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -20,18 +21,9 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        // FormRequestをインスタンス化
         $request = new RegisterRequest();
 
-        // inputをマージ
-        $request->merge($input);
-
-        // バリデーション実行
-        $validated = validator(
-        $request->all(),
-        $request->rules(),
-        $request->messages()
-        )->validate();
+        validator($input, $request->rules(), $request->messages())->validate();
 
         return User::create([
             'name' => $input['username'],

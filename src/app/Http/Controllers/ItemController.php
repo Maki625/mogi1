@@ -7,14 +7,22 @@ use App\Models\Product;
 
 class ItemController extends Controller
 {
-    public function index(Request $request) {
-        $query = Product::query();
+    public function index(Request $request)
+    {
 
-        if ($request->filled('keyword')) {
-            $query->where('product_name', 'like', '%' . $request->input('keyword') . '%');
+        $tab = $request->query('tab');
+
+        if ($tab === 'mylist') {
+            if (auth()->check()) {
+            $products = auth()->user()->favorites;
+            $tab = 'mylist';
+        } else {
+            $products = collect();
         }
-
-        $products = $query->get();
+        } else {
+            $products = Product::all();
+            $tab = 'recommend';
+        }
 
         $conditions = [
             1 => '良好',
@@ -27,7 +35,8 @@ class ItemController extends Controller
             $product->condition_label = $conditions[$product->product_condition] ?? '不明';
         }
 
-        return view('index', ['products' => $products]);
+        return view('index', compact('products', 'tab'));
+
     }
 
     public function show($item_id) {

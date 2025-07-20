@@ -29,6 +29,9 @@ Route::get('/', [ItemController::class, 'index']);
 //商品詳細画面
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
+//商品一覧画面マイリスト
+Route::get('/?tab=mylist', [ItemController::class, 'index']);
+
 //いいね登録処理
 Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store']);
 

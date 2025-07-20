@@ -7,59 +7,48 @@
 
 
     <div class="section-header">
-    <a href="#" class="section-link active" data-target="recommend">おすすめ</a>
-    <a href="#" class="section-link" data-target="mylist">マイリスト</a>
+        <a href="/" class="section-link {{ request('tab') === 'recommend' || !request()->has('tab') ? 'active' : '' }}">おすすめ</a>
+        <a href="/?tab=mylist" class="section-link {{ request('tab') === 'mylist' ? 'active' : '' }}">マイリスト</a>
     </div>
     <hr class="divider">
 
-    <div id="recommend" class="wrapper">
-
-        <div class="wrapper">
-        @foreach ($products as $product)
-            <a href="/item/{{ $product->id }}" class="card-link">
-            <div class="card">
-                <div class="product-img">
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
-                </div>
-                <div class="text-box">
-                    <span class="name">{{ $product->product_name }}</span>
-                </div>
-            </div>
-            </a>
-        @endforeach
-        </div>
-    </div>
-
-    <div id="mylist" class="wrapper">
-        <div class="wrapper">
-        @foreach ($products as $product)
-            <a href="/item/{{ $product->id }}" class="card-link">
-            <div class="card">
-                <div class="product-img">
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
-                </div>
-                <div class="text-box">
-                    <span class="name">{{ $product->product_name }}</span>
-                </div>
-            </div>
-            </a>
-        @endforeach
-        </div>
-    </div>
-
     <div class="wrapper">
-    @foreach ($products as $product)
-        <a href="/item/{{ $product->id }}" class="card-link">
-        <div class="card">
-            <div class="product-img">
-                <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
-            </div>
-            <div class="text-box">
-                <span class="name">{{ $product->product_name }}</span>
-            </div>
-        </div>
-        </a>
-    @endforeach
+    @if($tab === 'mylist')
+    @auth
+        @if($products->isEmpty())
+            <p>お気に入りはまだありません。</p>
+        @else
+            @foreach ($products as $product)
+                <a href="/item/{{ $product->id }}" class="card-link">
+                    <div class="card">
+                        <div class="product-img">
+                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                        </div>
+                        <div class="text-box">
+                            <span class="name">{{ $product->product_name }}</span>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        @endif
+    @else
+    @endauth
+
+            @else
+            {{-- おすすめ（全商品）表示 --}}
+            @foreach ($products as $product)
+                <a href="/item/{{ $product->id }}" class="card-link">
+                    <div class="card">
+                        <div class="product-img">
+                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                        </div>
+                        <div class="text-box">
+                            <span class="name">{{ $product->product_name }}</span>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        @endif
     </div>
 
 </main>
