@@ -19,9 +19,14 @@
   @csrf 
 
   <div class="form-group">
-  <label for="profile_image" class="custom-file-label">画像を選択する</label>
-  <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+    <div class="form-group image-upload-wrapper">
+    <img src="{{ asset('storage/profile_images/' . Auth::user()->profile_image) }}" alt="" class="profile-preview">
+
+    <label for="profile_image" class="custom-file-label">画像を選択する</label>
+    <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+    </div>
 </div>
+
 
 <div class="form-group">
                 <label>ユーザー名</label>

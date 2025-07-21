@@ -48,13 +48,13 @@ Route::get('/purchase/{item_id}', [PurchaseController::class, 'show']);
 Route::post('/', [PurchaseController::class,'store']);
 
 //商品出品画面
-Route::get('/sell', [ExhibitionController::class, 'create']);
+Route::get('/sell', [ExhibitionController::class, 'create'])->middleware('login.message');
 
 //商品出品処理
 Route::post('/sell', [ExhibitionController::class, 'store']);
 
 //マイページトップ
-Route::get('/mypage', [ProfileController::class, 'show']);
+Route::get('/mypage', [ProfileController::class, 'show'])->middleware('login.message');
 
 Route::post('/register', [RegisterController::class, 'store']);
 

@@ -40,7 +40,6 @@ label {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* 間隔を調整 */
 }
 
 .fav-button {
@@ -56,10 +55,14 @@ label {
     color: gold;
 }
 
-.category,
-.condition {
+.category_label,
+.condition_label {
     font-weight: bold;
 
+}
+
+.username {
+    font-weight:bold;
 }
 
 .comment-button {

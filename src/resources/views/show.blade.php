@@ -43,11 +43,16 @@
         <p class="description">{{ $product->product_description }}</p>
 
         <h3 class="condition-title">商品の情報</h3>
-        <div class="category">カテゴリー</div>
-        <div class="condition">商品の状態</div>
-        <span class="value">{{ $product->condition_label }}</span>
+        <div class="category_label">カテゴリー</div>
+        @foreach($product->categories as $category)
+            <span>{{ $category->name }}</span>
+        @endforeach
 
-        <span class="username">{{ $product->username }}</span>
+        </span>
+        <div class="condition_label">商品の状態</div>
+        <span class="condition">{{ $product->condition_label }}</span>
+
+        <span class="username">{{ $product->user->name }}</span>
 
     <form action="/item/{{ $product->id }}/comment" method="POST">
     @csrf

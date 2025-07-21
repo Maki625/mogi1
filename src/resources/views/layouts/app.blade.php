@@ -24,10 +24,10 @@
             @endauth
 
             @guest
-                <a href="/login">ログイン</a>
+                <a href="/login" class="login-btn">ログイン</a>
             @endguest
 
-            <a href="/mypage">マイページ</a>
+            <a href="/mypage" class="mypage-btn">マイページ</a>
             <form class="exhibition-button" action="/sell" method="GET">
                 <button type="submit" class="exhibition-button">出品</button>
             </form>

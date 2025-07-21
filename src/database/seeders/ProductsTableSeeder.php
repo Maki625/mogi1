@@ -26,6 +26,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/watch.jpg',
             'product_description' => 'スタイリッシュなデザインのメンズ腕時計',
             'product_condition' => 1,
+            'category_ids' => [1, 12],
             ],
 
             [
@@ -36,6 +37,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/HDD.jpg',
             'product_description' => '高速で信頼性の高いハードディスク',
             'product_condition' => 2,
+            'category_ids' => [2],
             ],
 
             [
@@ -45,6 +47,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/onions.jpg',
             'product_description' => '新鮮な玉ねぎ3束のセット',
             'product_condition' => 3,
+            'category_ids' => [10],
             ],
 
             [
@@ -54,6 +57,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/Leather.jpg',
             'product_description' => 'クラシックなデザインの革靴',
             'product_condition' => 4,
+            'category_ids' => [1, 5],
             ],
 
             [
@@ -63,6 +67,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/laptop.jpg',
             'product_description' => '高性能なノートパソコン',
             'product_condition' => 1,
+            'category_ids' => [2],
             ],
 
             [
@@ -72,6 +77,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/mic.jpg',
             'product_description' => '高音質のレコーディング用マイク',
             'product_condition' => 2,
+            'category_ids' => [2],
             ],
 
             [
@@ -81,6 +87,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/bag.jpg',
             'product_description' => 'おしゃれなショルダーバッグ',
             'product_condition' => 3,
+            'category_ids' => [1, 4],
             ],
 
             [
@@ -90,6 +97,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/Tumbler.jpg',
             'product_description' => '使いやすいタンブラー',
             'product_condition' => 4,
+            'category_ids' => [10],
             ],
 
             [
@@ -100,6 +108,7 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/CoffeeGrinder.jpg',
             'product_description' => '手動のコーヒーミル',
             'product_condition' => 1,
+            'category_ids' => [10],
             ],
 
             [
@@ -109,11 +118,12 @@ class ProductsTableSeeder extends Seeder
             'product_image' => 'storage/images/makeup.jpg',
             'product_description' => '便利なメイクアップセット',
             'product_condition' => 2,
+            'category_ids' => [4, 6],
             ],
         ];
 
         foreach ($products as $product) {
-            Product::create([
+            $createdProduct = Product::create([
                 'user_id' => $product['user_id'],
                 'product_name' => $product['product_name'],
                 'price' => $product['price'],
@@ -122,6 +132,11 @@ class ProductsTableSeeder extends Seeder
                 'product_condition' => $product['product_condition'],
                 'brand_name' => $product['brand_name'] ?? null,
             ]);
+
+        if(!empty($product['category_ids'])) {
+            $createdProduct->categories()->attach($product['category_ids']);
+        }
+
         }
     }
 }

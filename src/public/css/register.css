@@ -19,6 +19,10 @@
     margin-top: 32px;
 }
 
+.form-group input[type="text"] {
+    height: 35px;
+}
+
 label {
     width: auto;
     display: inline-block;

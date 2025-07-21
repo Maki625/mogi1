@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\User;
+
 
 class ItemController extends Controller
 {
@@ -20,7 +23,7 @@ class ItemController extends Controller
             $products = collect();
         }
         } else {
-            $products = Product::all();
+            $products = Product::with('categories', 'user')->get();
             $tab = 'recommend';
         }
 
@@ -41,7 +44,7 @@ class ItemController extends Controller
 
     public function show($item_id) {
 
-        $product = Product::findOrFail($item_id);
+        $product = Product::with('categories', 'user')->findOrFail($item_id);
 
         $conditions = [
             1 => '良好',

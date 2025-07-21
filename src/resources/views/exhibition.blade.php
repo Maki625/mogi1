@@ -16,7 +16,7 @@
 @endif
 
 <form class="form" method="POST" action="/sell">
-  @csrf 
+  @csrf
 
   <div class="form-group">
                 <label>商品画像</label>

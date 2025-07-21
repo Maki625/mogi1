@@ -64,7 +64,10 @@ body {
     font-size: 16px;
 }
 
-.logout-btn {
+.logout-btn,
+.login-btn,
+.mypage-btn,
+.exhibition-button {
     color: #fff;
     text-decoration: none;
     margin-left: 15px;
