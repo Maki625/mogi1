@@ -1,0 +1,111 @@
+.user-group {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.profile-preview {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    background-color: grey;
+}
+
+.edit-btn {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+    padding-top: 5px;
+    margin-left: 120px;
+    margin-top: 40px;
+    background: #fff;
+    color: red;
+    border: 1px solid red;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.section-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0 auto;
+    width: 95%;
+    padding: 20px 0;
+}
+
+.section-link {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.section-link:hover {
+    color: red;
+}
+
+.section-link.active {
+    color: red;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0 auto;
+    width: 95%;
+}
+
+
+.wrapper {
+    display: flex;
+    width: 95%;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0 auto;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.card-link {
+    width: 23%;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card {
+    cursor: pointer;
+    border: 1px solid #e9eaea;
+    border-radius: 3px;
+    height: 100%;
+}
+
+.text-box {
+    padding: 10px 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.product-img {
+    text-align: center;
+}
+
+.name {
+    font-size: 15px;
+}

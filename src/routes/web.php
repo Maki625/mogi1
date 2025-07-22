@@ -56,6 +56,7 @@ Route::post('/sell', [ExhibitionController::class, 'store']);
 //マイページトップ
 Route::get('/mypage', [ProfileController::class, 'show'])->middleware('login.message');
 
+//会員登録画面
 Route::post('/register', [RegisterController::class, 'store']);
 
 //プロフィール編集画面

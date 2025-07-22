@@ -17,19 +17,19 @@
             @auth
             <form id="logout-form" action="/logout" method="POST">
                 @csrf
-                <button type="submit" class="logout-btn">
+                <button type="submit" class="nav-link">
                 ログアウト
-            </button>
+                </button>
             </form>
             @endauth
 
             @guest
-                <a href="/login" class="login-btn">ログイン</a>
+                <a href="/login" class="nav-link">ログイン</a>
             @endguest
 
-            <a href="/mypage" class="mypage-btn">マイページ</a>
-            <form class="exhibition-button" action="/sell" method="GET">
-                <button type="submit" class="exhibition-button">出品</button>
+            <a href="/mypage" class="nav-link">マイページ</a>
+            <form action="/sell" method="GET">
+                <button type="submit" class="nav-btn">出品</button>
             </form>
         </nav>
     </div>
