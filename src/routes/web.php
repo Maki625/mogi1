@@ -8,6 +8,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -30,31 +31,31 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 //商品一覧画面マイリスト
-Route::get('/?tab=mylist', [ItemController::class, 'index']);
+Route::get('/?tab=mylist', [ItemController::class, 'index'])->middleware('auth');
 
 //いいね登録処理
-Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store']);
+Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store'])->middleware('auth');
 
 //いいね削除処理
 Route::delete('item/{item_id}/favorite', [FavoriteController::class, 'destroy']);
 
 //コメント送信処理
-Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
+Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->middleware('auth');
 
 //商品購入画面
-Route::get('/purchase/{item_id}', [PurchaseController::class, 'show']);
+Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->middleware('auth');
 
 //商品購入処理
 Route::post('/', [PurchaseController::class,'store']);
 
 //商品出品画面
-Route::get('/sell', [ExhibitionController::class, 'create'])->middleware('login.message');
+Route::get('/sell', [ExhibitionController::class, 'create'])->middleware('auth');
 
 //商品出品処理
 Route::post('/sell', [ExhibitionController::class, 'store']);
 
 //マイページトップ
-Route::get('/mypage', [ProfileController::class, 'show'])->middleware('login.message');
+Route::get('/mypage', [ProfileController::class, 'show'])->middleware('auth');
 
 //会員登録画面
 Route::post('/register', [RegisterController::class, 'store']);

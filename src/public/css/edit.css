@@ -25,6 +25,12 @@
     gap: 10px;
 }
 
+.filename {
+    font-size: 15px;
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
 .profile-preview {
     width: 95px;
     height: 95px;

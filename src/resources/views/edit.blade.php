@@ -25,6 +25,9 @@
 
     <label for="profile_image" class="custom-file-label">画像を選択する</label>
     <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+
+    {{-- ファイル名を表示する場所 --}}
+    <p id="file-name" class="filename"></p>
     </div>
 </div>
 
@@ -53,5 +56,12 @@
 <button type="submit" name="send" class="update-btn" value="update">更新する</button>
 
 </form>
+
+<script>
+document.getElementById('profile_image').addEventListener('change', function () {
+    const fileName = this.files[0]?.name || '';
+    document.getElementById('file-name').textContent = fileName;
+});
+</script>
 
 @endsection

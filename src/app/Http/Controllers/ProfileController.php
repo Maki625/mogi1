@@ -61,7 +61,19 @@ class ProfileController extends Controller
     $user->name = $request->input('name');
     $user->save();
 
-    return redirect('/mypage')->with('success', 'プロフィールを更新しました');
+    // プロフィール情報の更新（なければ新規作成）
+    $user->profile()->updateOrCreate(
+        ['user_id' => $user->id],
+        [
+            'username' => $request->input('username'),
+            'postal_code' => $request->input('postal_code'),
+            'address' => $request->input('address'),
+            'building_name' => $request->input('building_name'),
+            'profile_image' => $filename ?? $user->profile->profile_image ?? null,
+        ]
+    );
+
+    return redirect()->back();
 }
 
 }
