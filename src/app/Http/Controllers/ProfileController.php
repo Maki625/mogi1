@@ -44,8 +44,8 @@ class ProfileController extends Controller
     // プロフィール画像がアップロードされた場合
     if ($request->hasFile('profile_image')) {
         // 古い画像があれば削除（任意）
-        if ($user->profile_image) {
-            Storage::delete('public/profile_images/' . $user->profile_image);
+        if ($profile->profile_image) {
+            Storage::delete('public/profile_images/' . $profile->profile_image);
         }
 
         // 新しい画像の保存
@@ -53,13 +53,12 @@ class ProfileController extends Controller
         $filename = time() . '.' . $image->getClientOriginalExtension();
         $path = $image->storeAs('public/profile_images', $filename);
 
-        // ユーザーに画像ファイル名を保存
-        $user->profile_image = $filename;
+        $profile->profile_image = $filename;
     }
 
     // 他のプロフィール情報も更新（必要に応じて）
-    $user->name = $request->input('name');
-    $user->save();
+    $profile->username = $request->input('username');
+    $profile->save();
 
     // プロフィール情報の更新（なければ新規作成）
     $user->profile()->updateOrCreate(
@@ -73,7 +72,13 @@ class ProfileController extends Controller
         ]
     );
 
-    return redirect()->back();
+    $user = Auth::user();
+    $profile = $user->profile;
+
+    return view('mypage.profile', [
+        'user' => $user,
+        'profile' => $profile,
+    ]);
 }
 
 }

@@ -44,7 +44,8 @@ class ItemController extends Controller
 
     public function show($item_id) {
 
-        $product = Product::with('categories', 'user')->findOrFail($item_id);
+        $product = Product::with('categories', 'user')->withCount('favorites')
+               ->findOrFail($item_id);
 
         $conditions = [
             1 => '良好',
@@ -55,11 +56,12 @@ class ItemController extends Controller
 
         $product->condition_label = $conditions[$product->product_condition] ?? '不明';
 
+        // ログイン中ユーザーがこの商品をいいね済みかどうか
+        $is_favorited = auth()->check() && auth()->user()->favorites->contains($product->id);
 
         return view('show', [
             'product' => $product,
-            'like_count' => 5,
-            'comment_count' => 2,
-            ]);
+            'is_favorited' => $is_favorited,
+        ]);
     }
 }

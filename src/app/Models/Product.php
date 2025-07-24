@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Category;
 
+
 class Product extends Model
 {
     use HasFactory;
@@ -32,7 +33,7 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function favoritedBy()
+    public function favorites()
     {
         return $this->belongsToMany(User::class, 'favorite_product');
     }

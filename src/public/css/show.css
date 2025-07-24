@@ -55,6 +55,10 @@ label {
     color: gold;
 }
 
+.fav-count {
+    font-size: 10px;
+}
+
 .category_label,
 .condition_label {
     font-weight: bold;

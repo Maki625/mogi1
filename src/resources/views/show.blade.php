@@ -29,7 +29,7 @@
             </form>
         @endif
 
-        <div class="fav-count">{{ $product->like_count }}</div>
+        <div class="fav-count">{{ $product->favorites->count() }}</div>
 
         <a href="#" class="comment-button">💬</a>
         <p class="comment-count">{{ $product->comment_count }}</p>
