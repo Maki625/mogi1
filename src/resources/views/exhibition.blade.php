@@ -19,7 +19,7 @@
   @csrf
 
   <div class="form-group">
-                <label>商品画像</label>
+                <h2>商品画像</h2>
                 <input type="file" name="image">
 </div>
 
