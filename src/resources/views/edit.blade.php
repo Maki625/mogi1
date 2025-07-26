@@ -20,7 +20,7 @@
   @method('PUT')
 
 <div class="form-group image-upload-wrapper">
-    <img src="{{ asset('storage/profile_images/' . Auth::user()->profile->profile_image) }}" alt="" class="profile-preview">
+    <img src="{{ asset('storage/profile_images/' . $user->profile->profile_image) }}" alt="" class="profile-preview">
 
     <label for="profile_image" class="custom-file-label">画像を選択する</label>
     <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
@@ -31,22 +31,22 @@
 
 <div class="form-group">
                 <label>ユーザー名</label>
-                <input type="text" name="username"  value="{{ old('username', $profile->username) }}">
+                <input type="text" name="username"  value="{{ old('username', $user->profile->username) }}">
 </div>
 
 <div class="form-group">
                 <label>郵便番号</label>
-                <input type="text" name="postal_code" value="{{ old('postal_code', $profile->postal_code) }}">
+                <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
 </div>
 
 <div class="form-group">
                 <label>住所</label>
-                <input type="text" name="address" value="{{ old('address', $profile->address) }}">
+                <input type="text" name="address" value="{{ old('address', $user->profile->address) }}">
 </div>
 
 <div class="form-group">
                 <label>建物名</label>
-                <input type="text" name="building_name" value="{{ old('building_name', $profile->building_name) }}">
+                <input type="text" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
 </div>
 
 

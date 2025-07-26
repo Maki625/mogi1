@@ -33,6 +33,7 @@ class ProfileController extends Controller
     public function edit() {
 
         $user = Auth::user();
+        $user->load('profile');
         return view('edit', compact('user'));
     }
 
