@@ -36,8 +36,15 @@
     height: 95px;
     border-radius: 50%;
     object-fit: cover;
+    overflow: hidden;
     border: 1px solid #ccc;
     background-color: grey;
+}
+
+.no-image {
+    background-color: #ccc;
+    /* グレーの背景 */
+    display: inline-block;
 }
 
 .custom-file-label {

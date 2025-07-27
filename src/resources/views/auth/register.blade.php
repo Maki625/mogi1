@@ -28,7 +28,7 @@
 
   <div class="form-group">
                 <label>ユーザー名</label>
-                <input type="text" name="username"  value="{{ old('username') }}">
+                <input type="text" name="name"  value="{{ old('name') }}">
 
 </div>
 

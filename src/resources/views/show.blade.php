@@ -52,7 +52,7 @@
         <div class="condition_label">商品の状態</div>
         <span class="condition">{{ $product->condition_label }}</span>
 
-        <span class="username">{{ $product->user->name }}</span>
+        <span class="name">{{ $product->user->name }}</span>
 
     <form action="/item/{{ $product->id }}/comment" method="POST">
     @csrf

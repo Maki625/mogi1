@@ -20,7 +20,11 @@
   @method('PUT')
 
 <div class="form-group image-upload-wrapper">
-    <img src="{{ asset('storage/profile_images/' . $user->profile->profile_image) }}" alt="" class="profile-preview">
+    @if ($user->profile && $user->profile->profile_image)
+      <img src="{{ asset('storage/profile_images/' . $user->profile->profile_image) }}" alt="" class="profile-preview">
+    @else
+      <div class="profile-preview no-image"></div>
+    @endif
 
     <label for="profile_image" class="custom-file-label">画像を選択する</label>
     <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
@@ -31,7 +35,7 @@
 
 <div class="form-group">
                 <label>ユーザー名</label>
-                <input type="text" name="username"  value="{{ old('username', $user->profile->username) }}">
+                <input type="text" name="name"  value="{{ old('name', $user->name) }}">
 </div>
 
 <div class="form-group">

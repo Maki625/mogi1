@@ -7,7 +7,7 @@
 <div class="user-group">
     <img src="{{ asset('storage/profile_images/' . Auth::user()->profile_image) }}" alt="" class="profile-preview">
 
-    <span class="username">{{ Auth::user()->name }}</span>
+    <span class="name">{{ Auth::user()->name }}</span>
 
     <form action="/mypage/profile" method="GET">
     <button type="submit" name="send" class="edit-btn" value="edit">プロフィール編集</button>

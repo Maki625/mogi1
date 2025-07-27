@@ -58,14 +58,14 @@ class ProfileController extends Controller
     }
 
     // 他のプロフィール情報も更新（必要に応じて）
-    $profile->username = $request->input('username');
+    $profile->name = $request->input('name');
     $profile->save();
 
     // プロフィール情報の更新（なければ新規作成）
     $user->profile()->updateOrCreate(
         ['user_id' => $user->id],
         [
-            'username' => $request->input('username'),
+            'name' => $request->input('name'),
             'postal_code' => $request->input('postal_code'),
             'address' => $request->input('address'),
             'building_name' => $request->input('building_name'),
