@@ -11,8 +11,13 @@ class PurchaseController extends Controller
 {
     public function show($item_id)
     {
+        $user = auth()->user();
+
         $product = Product::findOrFail($item_id);
-        return view('purchase', ['product' => $product]);
+        return view('purchase', [
+            'product' => $product,
+            'user' => $user,
+        ]);
     }
 
 

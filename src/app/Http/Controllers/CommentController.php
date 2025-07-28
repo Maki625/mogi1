@@ -16,8 +16,8 @@ class CommentController extends Controller
 
     Comment::create([
         'user_id' => auth()->id(),
-        'item_id' => $item_id,
-        'content' => $request->comment,
+        'product_id' => $item_id,
+        'comment' => $request->comment,
     ]);
 
     return back();

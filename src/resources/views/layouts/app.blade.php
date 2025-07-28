@@ -11,6 +11,7 @@
 
         <form class="header__search" action="/" method="GET">
             <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="何をお探しですか？">
+            <input type="hidden" name="tab" value="{{ request('tab') }}">
         </form>
 
         <nav class="header__nav">

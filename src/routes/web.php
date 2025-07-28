@@ -37,7 +37,7 @@ Route::get('/?tab=mylist', [ItemController::class, 'index'])->middleware('auth')
 Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store'])->middleware('auth');
 
 //いいね削除処理
-Route::delete('item/{item_id}/favorite', [FavoriteController::class, 'destroy']);
+Route::delete('item/{item_id}/favorite', [FavoriteController::class, 'destroy'])->middleware('auth');
 
 //コメント送信処理
 Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->middleware('auth');

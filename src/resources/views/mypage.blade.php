@@ -5,9 +5,13 @@
 <link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
 
 <div class="user-group">
-    <img src="{{ asset('storage/profile_images/' . Auth::user()->profile_image) }}" alt="" class="profile-preview">
+    @if ($user->profile && $user->profile->profile_image)
+        <img src="{{ asset('storage/profile_images/' . $user->profile->profile_image) }}" alt="" class="profile-preview">
+    @else
+        <div class="profile-preview no-image"></div>
+    @endif
 
-    <span class="name">{{ Auth::user()->name }}</span>
+    <span class="name">{{ $user->name }}</span>
 
     <form action="/mypage/profile" method="GET">
     <button type="submit" name="send" class="edit-btn" value="edit">プロフィール編集</button>

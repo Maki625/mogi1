@@ -55,7 +55,8 @@ label {
     color: gold;
 }
 
-.fav-count {
+.fav-count,
+.comment-count, {
     font-size: 10px;
 }
 
@@ -63,6 +64,34 @@ label {
 .condition_label {
     font-weight: bold;
 
+}
+
+.image-wrapper {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.filename {
+    font-size: 15px;
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+.profile-preview {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: grey;
+}
+
+.no-image {
+    background-color: #ccc;
+    /* グレーの背景 */
+    display: inline-block;
 }
 
 .name {

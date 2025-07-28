@@ -1,14 +1,21 @@
+@extends('layouts.app')
+
+@section('content')
 <link href="{{ asset('css/purchase.css') }}" rel="stylesheet">
 
 <div class="container">
-    <div class="image-group">
+    <div class="product-header">
+    <div class="item-image">
     <img src="{{ asset($product->product_image) }}" alt="商品画像">
     </div>
 
-    <div class="detail-group">
+    <div class="label-group">
         <h1 class="name">{{ $product->product_name }}</h1>
         <p class="price">¥{{ $product->price }}</p>
+</div>
+</div>
 
+    <div class="detail-group">
         <h2 class="payment-title">支払い方法</h2>
         <select name="payment" id="productSelect">
             <option value="">選択してください</option>
@@ -17,10 +24,12 @@
         </select>
 
         <h2 class="address-title">配送先</h2>
-        <a class="address-url" href="/purchase/address/{item_id}">変更する</a>
-        <p class="postal-code"></p>
-        <p class="address"></p>
-        <p class="building"></p>
+
+        <a class="address-url" href="/purchase/address/{{ $product->id }}">変更する</a>
+
+        <div class="postal-code">〒{{ old('postal_code', $user->profile->postal_code) }}</div>
+        <p class="address">{{ old('address', $user->profile->address) }}</p>
+        <p class="building_name">{{ old('building_name', $user->profile->building_name) }}</p>
     </div>
 
     <div class="payment-group">
@@ -49,4 +58,6 @@ document.getElementById('productSelect').addEventListener('change', function() {
     }
 });
 </script>
+
+@endsection
 

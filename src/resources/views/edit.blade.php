@@ -15,7 +15,7 @@
 </ul>
 @endif
 
-<form class="form" method="POST" action="/mypage/profile" action="/mypage/profile" enctype="multipart/form-data">
+<form class="form" method="POST" action="/mypage/profile" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 
@@ -40,17 +40,29 @@
 
 <div class="form-group">
                 <label>郵便番号</label>
-                <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
+                @if ($user->profile)
+                  <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
+                @else
+                  <input type="text" name="postal_code" value="">
+                @endif
 </div>
 
 <div class="form-group">
                 <label>住所</label>
-                <input type="text" name="address" value="{{ old('address', $user->profile->address) }}">
+                @if ($user->profile)
+                  <input type="text" name="address" value="{{ old('address', $user->profile->address) }}">
+                @else
+                  <input type="text" name="address" value="">
+                @endif
 </div>
 
 <div class="form-group">
                 <label>建物名</label>
-                <input type="text" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
+                @if ($user->profile)
+                  <input type="text" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
+                @else
+                  <input type="text" name="building_name" value="">
+                @endif
 </div>
 
 

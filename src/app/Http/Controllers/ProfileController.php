@@ -14,19 +14,21 @@ class ProfileController extends Controller
 {
 
     public function show(Request $request) {
-        $userId = Auth::id();
+        $user = Auth::user();
+        $userId = $user->id;
 
         // 出品した商品
         $soldProducts = Product::where('user_id', $userId)->get();
 
-        // 購入した商品（purchaseテーブルがあると仮定）
+        // 購入した商品
         $boughtProducts = Product::whereHas('purchases', function($query) use ($userId) {
             $query->where('user_id', $userId);
         })->get();
 
         return view('mypage', [
-            'soldProducts' => $soldProducts,
-            'boughtProducts' => $boughtProducts,
+            'user' => $user,
+            'soldProducts' => $soldProducts ?? collect(),
+            'boughtProducts' => $boughtProducts ?? collect(),
         ]);
     }
 
@@ -35,12 +37,15 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->load('profile');
         return view('edit', compact('user'));
+
     }
 
     //更新処理
     public function update(ProfileRequest $request)
 {
     $user = auth()->user();
+
+    $profile = $user->profile ?? new \App\Models\Profile();
 
     // プロフィール画像がアップロードされた場合
     if ($request->hasFile('profile_image')) {
@@ -58,14 +63,13 @@ class ProfileController extends Controller
     }
 
     // 他のプロフィール情報も更新（必要に応じて）
-    $profile->name = $request->input('name');
-    $profile->save();
+    $user->name = $request->input('name');
+    $user->save();
 
     // プロフィール情報の更新（なければ新規作成）
     $user->profile()->updateOrCreate(
         ['user_id' => $user->id],
         [
-            'name' => $request->input('name'),
             'postal_code' => $request->input('postal_code'),
             'address' => $request->input('address'),
             'building_name' => $request->input('building_name'),
@@ -73,13 +77,15 @@ class ProfileController extends Controller
         ]
     );
 
-    $user = Auth::user();
-    $profile = $user->profile;
+    return redirect('/mypage');
 
-    return view('mypage.profile', [
-        'user' => $user,
-        'profile' => $profile,
-    ]);
+    // $user = Auth::user();
+    // $profile = $user->profile;
+
+    // return view('mypage', [
+    //     'user' => $user,
+    //     'profile' => $profile,
+    // ]);
 }
 
 }

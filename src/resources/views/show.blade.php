@@ -32,7 +32,7 @@
         <div class="fav-count">{{ $product->favorites->count() }}</div>
 
         <a href="#" class="comment-button">💬</a>
-        <p class="comment-count">{{ $product->comment_count }}</p>
+        <div class="comment-count">{{ $product->comments->count() }}</div>
         </div>
 
         <form action="/purchase/{{ $product->id }}" method="GET">
@@ -52,7 +52,24 @@
         <div class="condition_label">商品の状態</div>
         <span class="condition">{{ $product->condition_label }}</span>
 
-        <span class="name">{{ $product->user->name }}</span>
+        <div class="comment-label">コメント</div>
+        <div class="comment-count">( {{ $product->comments->count() }} )</div>
+
+        @foreach($product->comments as $comment)
+        <div class="form-group image-wrapper">
+        @if ($comment->user->profile && $comment->user->profile->profile_image)
+      <img src="{{ asset('storage/profile_images/' . $comment->user->profile->profile_image) }}" alt="" class="profile-preview">
+    @else
+      <div class="profile-preview no-image"></div>
+    @endif
+</div>
+
+    <div class="comment">
+        <div class="comment-user">{{ $comment->user->name ?? '匿名' }}</div></p>
+        <div class="comment-content">{{ $comment->comment }}</div>
+    </div>
+@endforeach
+
 
     <form action="/item/{{ $product->id }}/comment" method="POST">
     @csrf

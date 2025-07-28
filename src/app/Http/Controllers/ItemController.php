@@ -12,18 +12,31 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        $keyword = $request->input('keyword');
 
         $tab = $request->query('tab');
 
         if ($tab === 'mylist') {
             if (auth()->check()) {
-            $products = auth()->user()->favorites;
-            $tab = 'mylist';
+            $query = auth()->user()->favorites()->with('categories', 'user');
+
+            if($keyword) {
+                $query->where('product_name', 'like', '%' . $keyword . '%');
+            }
+
+            $products = $query->get();
+
         } else {
             $products = collect();
         }
         } else {
-            $products = Product::with('categories', 'user')->get();
+
+            $query = Product::with('categories', 'user');
+            if ($keyword) {
+                $query->where('product_name', 'like', '%' . $keyword . '%');
+            }
+
+            $products = $query->get();
             $tab = 'recommend';
         }
 
@@ -44,8 +57,8 @@ class ItemController extends Controller
 
     public function show($item_id) {
 
-        $product = Product::with('categories', 'user')->withCount('favorites')
-               ->findOrFail($item_id);
+        $product = Product::with('categories', 'comments.user')->withCount('favorites', 'comments')
+        ->findOrFail($item_id);
 
         $conditions = [
             1 => '良好',
