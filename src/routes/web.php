@@ -46,7 +46,7 @@ Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->mid
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->middleware('auth');
 
 //商品購入処理
-Route::post('/', [PurchaseController::class,'store']);
+Route::post('/purchase/{item_id}', [PurchaseController::class,'store']);
 
 //商品出品画面
 Route::get('/sell', [ExhibitionController::class, 'create'])->middleware('auth');
@@ -68,3 +68,6 @@ Route::put('/mypage/profile', [ProfileController::class, 'update']);
 
 //住所変更画面
 Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit']);
+
+//住所変更処理
+Route::post('/purchase/address/{item_id}', [AddressController::class, 'update']);

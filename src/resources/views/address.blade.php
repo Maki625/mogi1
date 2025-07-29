@@ -19,7 +19,7 @@
 </ul>
 @endif
 
-<form class="form" method="POST" action="/login">
+<form class="form" method="POST" action="/purchase/address/{{ $product->id }}">
   @csrf
 
 <div class="form-group">
