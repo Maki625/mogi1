@@ -33,7 +33,9 @@
                 <a href="/item/{{ $product->id }}" class="card-link">
                     <div class="card">
                         <div class="product-img">
+                        <div class="image-wrapper">
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                        </div>
                         </div>
                         <div class="text-box">
                             <span class="name">{{ $product->product_name }}</span>
@@ -50,7 +52,9 @@
                 <a href="/item/{{ $product->id }}" class="card-link">
                     <div class="card">
                         <div class="product-img">
+                        <div class="image-wrapper">
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                        </div>
                         </div>
                         <div class="text-box">
                             <span class="name">{{ $product->product_name }}</span>

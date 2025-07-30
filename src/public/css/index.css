@@ -50,7 +50,6 @@
     text-align: center;
 }
 
-/* 追加ここから */
 .image-wrapper {
     position: relative;
     width: 100%;
@@ -59,7 +58,8 @@
 .image-wrapper img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .sold-out-overlay {
@@ -77,8 +77,6 @@
     justify-content: center;
     z-index: 2;
 }
-
-/* 追加ここまで */
 
 .card-link {
     width: 23%;

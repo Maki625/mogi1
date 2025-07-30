@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $soldProducts = Product::where('user_id', $userId)->get();
 
         // 購入した商品
-        $boughtProducts = Product::whereHas('purchases', function($query) use ($userId) {
+        $boughtProducts = Product::whereHas('purchase', function($query) use ($userId) {
             $query->where('user_id', $userId);
         })->get();
 
@@ -78,14 +78,6 @@ class ProfileController extends Controller
     );
 
     return redirect('/mypage');
-
-    // $user = Auth::user();
-    // $profile = $user->profile;
-
-    // return view('mypage', [
-    //     'user' => $user,
-    //     'profile' => $profile,
-    // ]);
 }
 
 }

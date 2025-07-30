@@ -80,6 +80,21 @@
     height: 100%;
 }
 
+.product-img {
+    text-align: center;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
 
 .card-link {
     width: 23%;

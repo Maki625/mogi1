@@ -34,6 +34,10 @@ class ItemController extends Controller
         } else {
 
             $query = Product::with('categories', 'user', 'purchase');
+
+            if (auth()->check()) {
+                $query->where('user_id', '!=', auth()->id());
+            }
             if ($keyword) {
                 $query->where('product_name', 'like', '%' . $keyword . '%');
             }
