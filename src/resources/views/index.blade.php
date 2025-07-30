@@ -22,7 +22,12 @@
                 <a href="/item/{{ $product->id }}" class="card-link">
                     <div class="card">
                         <div class="product-img">
+                            <div class="image-wrapper">
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                            @if($product->is_sold_out)
+                                <div class="sold-out-overlay">SOLD OUT</div>
+                            @endif
+                            </div>
                         </div>
                         <div class="text-box">
                             <span class="name">{{ $product->product_name }}</span>
@@ -37,10 +42,16 @@
             @else
             {{-- おすすめ（全商品）表示 --}}
             @foreach ($products as $product)
+
                 <a href="/item/{{ $product->id }}" class="card-link">
                     <div class="card">
                         <div class="product-img">
+                            <div class="image-wrapper">
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+                            @if($product->is_sold_out)
+                                <div class="sold-out-overlay">SOLD OUT</div>
+                            @endif
+                            </div>
                         </div>
                         <div class="text-box">
                             <span class="name">{{ $product->product_name }}</span>

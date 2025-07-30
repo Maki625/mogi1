@@ -15,58 +15,57 @@
 </ul>
 @endif
 
-<form class="form" method="POST" action="/sell">
+<form class="form" method="POST" action="/sell" enctype="multipart/form-data">
   @csrf
 
   <div class="form-group">
-                <h2>商品画像</h2>
-                <input type="file" name="image">
+                <h2 class="product-img">商品画像</h2>
+                <input type="file" name="product_image">
 </div>
 
 <div class="form-group">
-                <h2>商品の詳細</h2>
-                <label>カテゴリー</label>
+                <h2 class="details">商品の詳細</h2>
+                <label class="category">カテゴリー</label>
                 <div class="category-group">
     @foreach ($categories as $category)
-        <input type="checkbox" id="category-{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
-        <label for="category-{{ $category->id }}">{{ $category->name }}</label>
+    <input type="checkbox" id="category-{{ $category->id }}" name="categories[]" value="{{ $category->id }}"
+        {{ (is_array(old('categories')) && in_array($category->id, old('categories'))) ? 'checked' : '' }}>
+    <label for="category-{{ $category->id }}">{{ $category->name }}</label>
     @endforeach
 </div>
 </div>
 
 <div class="form-group">
-                <label>商品の状態</label>
-                  <select name="condition">
+                <label class="condition">商品の状態</label>
+                  <select name="product_condition">
                     <option value="">選択してください</option>
-                    <option value="1" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
-                    <option value="2" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                    <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
-                    <option value="4" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
+                    <option value="1" {{ old('product_condition') == '1' ? 'selected' : '' }}>良好</option>
+                    <option value="2" {{ old('product_condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                    <option value="3" {{ old('product_condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                    <option value="4" {{ old('product_condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
                   </select>
 </div>
 
 <div class="form-group">
                 <h2>商品名と説明</h2>
                 <label>商品名</label>
-                <input type="text" name="product_name" value="">
+                <input type="text" name="product_name" value="{{ old('product_name') }}">
 </div>
 
 <div class="form-group">
                 <label>ブランド名</label>
-                <input type="text" name="brand_name" value="">
+                <input type="text" name="brand_name" value="{{ old('brand_name') }}">
 </div>
 
 <div class="form-group">
                 <label>商品の説明</label>
-                <input type="text-box" name="product_description" value="">
+                <input type="text-box" name="product_description" value="{{ old('product_description') }}">
 </div>
 
 <div class="form-group">
                 <label>販売価格</label>
-                <input type="text" name="price" value="">
+                <input type="text" name="price" value="{{ old('price') }}">
 </div>
-
-
 
 <button type="submit" name="send" class="send-btn" value="create">出品する</button>
 

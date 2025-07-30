@@ -43,8 +43,13 @@ class Product extends Model
         return $this->belongsToMany(Category::class, 'product_category');
     }
 
-    public function purchases()
+    public function purchase()
 {
-    return $this->hasMany(Purchase::class);
+    return $this->hasOne(Purchase::class, 'product_id');
 }
+
+    public function getIsSoldOutAttribute()
+    {
+       return $this->purchase !== null;
+    }
 }

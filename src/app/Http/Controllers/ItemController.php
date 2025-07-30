@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Purchase;
+
 
 
 class ItemController extends Controller
@@ -18,7 +20,7 @@ class ItemController extends Controller
 
         if ($tab === 'mylist') {
             if (auth()->check()) {
-            $query = auth()->user()->favorites()->with('categories', 'user');
+            $query = auth()->user()->favorites()->with('categories', 'user', 'purchase');
 
             if($keyword) {
                 $query->where('product_name', 'like', '%' . $keyword . '%');
@@ -31,7 +33,7 @@ class ItemController extends Controller
         }
         } else {
 
-            $query = Product::with('categories', 'user');
+            $query = Product::with('categories', 'user', 'purchase');
             if ($keyword) {
                 $query->where('product_name', 'like', '%' . $keyword . '%');
             }
@@ -59,6 +61,11 @@ class ItemController extends Controller
 
         $product = Product::with('categories', 'comments.user')->withCount('favorites', 'comments')
         ->findOrFail($item_id);
+
+        // 購入済みなら売り切れページへリダイレクト
+        if ($product->purchase()->exists()) {
+        return redirect()->route('item.soldout', ['item_id' => $item_id]);
+        }
 
         $conditions = [
             1 => '良好',

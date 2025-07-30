@@ -33,6 +33,11 @@ Route::get('/item/{item_id}', [ItemController::class, 'show']);
 //商品一覧画面マイリスト
 Route::get('/?tab=mylist', [ItemController::class, 'index'])->middleware('auth');
 
+// 売り切れ商品のページ表示
+Route::get('/item/{item_id}/soldout', function ($item_id) {
+return view('soldout', ['item_id' => $item_id]);
+})->name('item.soldout');
+
 //いいね登録処理
 Route::post('/item/{item_id}/favorite', [FavoriteController::class, 'store'])->middleware('auth');
 
