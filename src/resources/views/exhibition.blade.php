@@ -20,11 +20,17 @@
 
   <div class="form-group">
                 <h2 class="product-img">商品画像</h2>
-                <input type="file" name="product_image">
+                <label for="profile_image" class="custom-file-label">画像を選択する</label>
+    <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+
+    {{-- ファイル名を表示する場所 --}}
+    <p id="file-name" class="filename"></p>
 </div>
 
 <div class="form-group">
-                <h2 class="details">商品の詳細</h2>
+                <h2 class="details-title">商品の詳細</h2>
+                <hr class="divider">
+
                 <label class="category">カテゴリー</label>
                 <div class="category-group">
     @foreach ($categories as $category)
@@ -36,7 +42,7 @@
 </div>
 
 <div class="form-group">
-                <label class="condition">商品の状態</label>
+                <h2 class="condition">商品の状態</h2>
                   <select name="product_condition">
                     <option value="">選択してください</option>
                     <option value="1" {{ old('product_condition') == '1' ? 'selected' : '' }}>良好</option>
@@ -47,23 +53,25 @@
 </div>
 
 <div class="form-group">
-                <h2>商品名と説明</h2>
-                <label>商品名</label>
+                <h2 class="description-title">商品名と説明</h2>
+                <hr class="divider">
+
+                <label class="product_name">商品名</label>
                 <input type="text" name="product_name" value="{{ old('product_name') }}">
 </div>
 
 <div class="form-group">
-                <label>ブランド名</label>
+                <label class="brand_name">ブランド名</label>
                 <input type="text" name="brand_name" value="{{ old('brand_name') }}">
 </div>
 
 <div class="form-group">
-                <label>商品の説明</label>
-                <input type="text-box" name="product_description" value="{{ old('product_description') }}">
+                <label class="product_description">商品の説明</label>
+                <input type="textarea" name="product_description" value="{{ old('product_description') }}">
 </div>
 
 <div class="form-group">
-                <label>販売価格</label>
+                <label class="price">販売価格</label>
                 <input type="text" name="price" value="{{ old('price') }}">
 </div>
 
