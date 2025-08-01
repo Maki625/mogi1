@@ -32,8 +32,8 @@
 }
 
 .profile-preview {
-    width: 95px;
-    height: 95px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     overflow: hidden;
@@ -52,8 +52,8 @@
     width: 40%;
     height: 40px;
     padding-top: 5px;
-    margin-left: 20px;
-    margin-top: 40px;
+    margin-left: 75px;
+    margin-top: 30px;
     background: #fff;
     color: red;
     border: 1px solid red;
@@ -69,7 +69,7 @@ label {
     width: auto;
     display: inline-block;
     font-size: 17px;
-    font-style: bold;
+    font-weight: bold;
     margin-top: 10px;
     margin-bottom: 8px;
     white-space: nowrap;

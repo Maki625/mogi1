@@ -34,12 +34,12 @@
 </div>
 
 <div class="form-group">
-                <label>ユーザー名</label>
+                <label class="name">ユーザー名</label>
                 <input type="text" name="name"  value="{{ old('name', $user->name) }}">
 </div>
 
 <div class="form-group">
-                <label>郵便番号</label>
+                <label class="postal_code">郵便番号</label>
                 @if ($user->profile)
                   <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
                 @else
@@ -48,7 +48,7 @@
 </div>
 
 <div class="form-group">
-                <label>住所</label>
+                <label class="address">住所</label>
                 @if ($user->profile)
                   <input type="text" name="address" value="{{ old('address', $user->profile->address) }}">
                 @else
@@ -57,7 +57,7 @@
 </div>
 
 <div class="form-group">
-                <label>建物名</label>
+                <label class="building">建物名</label>
                 @if ($user->profile)
                   <input type="text" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
                 @else

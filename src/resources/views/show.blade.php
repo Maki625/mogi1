@@ -43,17 +43,21 @@
         <p class="description">{{ $product->product_description }}</p>
 
         <h3 class="condition-title">商品の情報</h3>
+
+        <div class="category-wrapper">
         <div class="category_label">カテゴリー</div>
         @foreach($product->categories as $category)
-            <span>{{ $category->name }}</span>
+            <span class="category">{{ $category->name }}</span>
         @endforeach
+</div>
 
-        </span>
         <div class="condition_label">商品の状態</div>
         <span class="condition">{{ $product->condition_label }}</span>
 
+        <div class="comment-wrapper">
         <div class="comment-label">コメント</div>
         <div class="comment-count">( {{ $product->comments->count() }} )</div>
+</div>
 
         @foreach($product->comments as $comment)
         <div class="form-group image-wrapper">

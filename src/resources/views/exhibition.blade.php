@@ -19,9 +19,11 @@
   @csrf
 
   <div class="form-group">
-                <h2 class="product-img">商品画像</h2>
-                <label for="profile_image" class="custom-file-label">画像を選択する</label>
-    <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+    <h2 class="product-img">商品画像</h2>
+      <div class="outer-box">
+        <label for="profile_image" class="custom-file-label">画像を選択する</label>
+        <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+      </div>
 
     {{-- ファイル名を表示する場所 --}}
     <p id="file-name" class="filename"></p>
