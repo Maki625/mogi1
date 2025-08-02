@@ -1,5 +1,5 @@
 .container {
-    max-width: 800px;
+    max-width: 910px;
     margin: 0 auto;
     padding: 40px 20px;
     box-sizing: border-box;
@@ -106,15 +106,29 @@ label {
 
 .category-wrapper {
     display: flex;
+    margin-bottom: 10px;
+}
+
+.category-label {
+    margin-right: 20px;
+    font-weight: bold;
 }
 
 .category {
-    padding: 5px 20px;
+    padding: 2px 20px;
     background-color: #ccc;
-    font-size: 20px;
-    margin-left: 40px;
-    border-radius: 3px;
+    font-size: 15px;
+    margin-left: 20px;
+    border-radius: 50px;
+}
 
+.condition-wrapper {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.condition {
+    margin-left: 40px;
 }
 
 h3 {
@@ -134,12 +148,27 @@ a {
     font-size: 25px;
 }
 
-.comment-wrapper {
+.comment-count_wrapper {
     display: flex;
     color: grey;
     font-weight: bold;
     margin-top: 3px;
+    margin-bottom: 10px;
     font-size: 20px;
+}
+
+.comment-user {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.comment-content {
+    padding: 10px 20px;
+    background-color: #ccc;
+    margin-top: 20px;
+    border-radius: 3px;
 }
 
 .text-area {

@@ -19,6 +19,7 @@
         <form action="/item/{{ $product->id }}/favorite" method="POST">
         @csrf
         @method('DELETE')
+        <div class="fav-wrapper">
             <button type="submit" class="fav-button active">★</button>
         </form>
         @else
@@ -33,7 +34,7 @@
 
         <a href="#" class="comment-button">💬</a>
         <div class="comment-count">{{ $product->comments->count() }}</div>
-        </div>
+</div>
 
         <form action="/purchase/{{ $product->id }}" method="GET">
             <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入手続きへ</button>
@@ -45,33 +46,37 @@
         <h3 class="condition-title">商品の情報</h3>
 
         <div class="category-wrapper">
-        <div class="category_label">カテゴリー</div>
+        <div class="category-label">カテゴリー</div>
         @foreach($product->categories as $category)
             <span class="category">{{ $category->name }}</span>
         @endforeach
 </div>
 
+<div class="condition-wrapper">
         <div class="condition_label">商品の状態</div>
-        <span class="condition">{{ $product->condition_label }}</span>
+        <div class="condition">{{ $product->condition_label }}</div>
+</div>
 
-        <div class="comment-wrapper">
+        <div class="comment-count_wrapper">
         <div class="comment-label">コメント</div>
         <div class="comment-count">( {{ $product->comments->count() }} )</div>
 </div>
 
         @foreach($product->comments as $comment)
-        <div class="form-group image-wrapper">
+    <div class="form-group image-wrapper">
         @if ($comment->user->profile && $comment->user->profile->profile_image)
       <img src="{{ asset('storage/profile_images/' . $comment->user->profile->profile_image) }}" alt="" class="profile-preview">
     @else
-      <div class="profile-preview no-image"></div>
-    @endif
 </div>
 
-    <div class="comment">
-        <div class="comment-user">{{ $comment->user->name ?? '匿名' }}</div></p>
+    <div class="comment-username">
+    <div class="profile-preview no-image"></div>
+    @endif
+
+    <div class="comment-user">{{ $comment->user->name ?? '匿名' }}</div>
+</div>
+
         <div class="comment-content">{{ $comment->comment }}</div>
-    </div>
 @endforeach
 
 
