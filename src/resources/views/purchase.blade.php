@@ -10,21 +10,21 @@
 @endif
 
 <form action="/purchase/{{ $product->id }}" method="POST">
-            @csrf
+    @csrf
 
-<div class="container">
-    <div class="product-header">
-    <div class="item-image">
-    <img src="{{ asset($product->product_image) }}" alt="商品画像">
-    </div>
+    <div class="container">
+        <div class="detail-group">
+            <div class="product-header">
+                <div class="item-image">
+                <img src="{{ asset($product->product_image) }}" alt="商品画像">
+                </div>
 
-    <div class="label-group">
-        <h1 class="name">{{ $product->product_name }}</h1>
-        <p class="price">¥{{ $product->price }}</p>
-</div>
-</div>
+                <div class="label-group">
+                <h1 class="name">{{ $product->product_name }}</h1>
+                <p class="price">¥{{ $product->price }}</p>
+                </div>
+            </div>
 
-    <div class="detail-group">
         <h2 class="payment-title">支払い方法</h2>
         <select name="payment_method" id="productSelect">
             <option value="">選択してください</option>
@@ -41,21 +41,25 @@
         <p class="building_name">{{ old('building_name', $user->profile->building_name) }}</p>
     </div>
 
-    <div class="payment-group">
-        <p class="price-title">商品代金</p>
-        <p class="price">¥{{ $product->price }}</p>
-        <p class="payment-method_title">支払い方法</p>
-        <div id="selectedProductDisplay" class="selected-display">
+    <div class="payment-wrapper">
+        <div class="price-group">
+            <p class="price-title">商品代金</p>
+            <p class="price">¥{{ $product->price }}</p>
         </div>
-        <p class="payment-method"></p>
+
+        <div class="payment-group">
+            <p class="payment-method_title">支払い方法</p>
+            <div id="selectedProductDisplay" class="selected-display"></div>
+        </div>
 
         <input type="hidden" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
-    <input type="hidden" name="address" value="{{ old('address', $user->profile->address) }}">
-    <input type="hidden" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入する</button>
-        </form>
-</div>
+        <input type="hidden" name="address" value="{{ old('address', $user->profile->address) }}">
+        <input type="hidden" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+        <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入する</button>
+    </div>
+</form>
 
 <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -72,7 +76,7 @@
 document.getElementById('productSelect').addEventListener('change', function() {
     const selectedValue = this.value;
     const displayDiv = document.getElementById('selectedProductDisplay');
-    
+
     if (selectedValue) {
         displayDiv.textContent = selectedValue;
     } else {
