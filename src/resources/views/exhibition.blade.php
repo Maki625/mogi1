@@ -82,7 +82,7 @@
 </form>
 
 <script>
-document.getElementById('profile_image').addEventListener('change', function () {
+document.getElementById('product_image').addEventListener('change', function () {
     const fileName = this.files[0]?.name || '';
     document.getElementById('file-name').textContent = fileName;
 });
