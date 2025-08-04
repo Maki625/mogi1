@@ -21,13 +21,13 @@
   <div class="form-group">
     <h2 class="product-img">商品画像</h2>
       <div class="outer-box">
-        <label for="profile_image" class="custom-file-label">画像を選択する</label>
-        <input type="file" id="profile_image" name="profile_image" class="hidden-file-input">
+        <label for="product_image" class="custom-file-label">画像を選択する</label>
+        <p id="file-name" class="filename"></p>
+
+        <input type="file" id="product_image" name="product_image" class="hidden-file-input">
       </div>
 
-    {{-- ファイル名を表示する場所 --}}
-    <p id="file-name" class="filename"></p>
-</div>
+  </div>
 
 <div class="form-group">
                 <h2 class="details-title">商品の詳細</h2>
@@ -80,5 +80,12 @@
 <button type="submit" name="send" class="send-btn" value="create">出品する</button>
 
 </form>
+
+<script>
+document.getElementById('profile_image').addEventListener('change', function () {
+    const fileName = this.files[0]?.name || '';
+    document.getElementById('file-name').textContent = fileName;
+});
+</script>
 
 @endsection
