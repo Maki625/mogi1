@@ -17,18 +17,21 @@ class AddressController extends Controller
         $user->load('profile');
         $product = Product::findOrFail($item_id);
 
-        return view('address', compact('user', 'product'));
+        $purchaseAddress = session("purchase_address.{$item_id}");
+
+        return view('address', compact('user', 'product', 'purchaseAddress'));
         }
 
     public function update(AddressRequest $request, $item_id) {
-        $user = auth()->user();
-        $profile = $user->profile ?? new \App\Models\Profile();
 
-        $profile->user_id = $user->id;
-        $profile->postal_code = $request->postal_code;
-        $profile->address = $request->address;
-        $profile->building_name = $request->building_name;
-        $profile->save();
+        session([
+            "purchase_address.{$item_id}" => [
+            'postal_code' =>
+            $request->postal_code,
+            'address' => $request->address,
+            'building_name' => $request->building_name,
+            ]
+        ]);
 
         return redirect("/purchase/{$item_id}");
     }

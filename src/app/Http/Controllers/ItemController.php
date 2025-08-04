@@ -66,7 +66,6 @@ class ItemController extends Controller
         $product = Product::with('categories', 'comments.user')->withCount('favorites', 'comments')
         ->findOrFail($item_id);
 
-        // 購入済みなら売り切れページへリダイレクト
         if ($product->purchase()->exists()) {
         return redirect()->route('item.soldout', ['item_id' => $item_id]);
         }
@@ -80,7 +79,6 @@ class ItemController extends Controller
 
         $product->condition_label = $conditions[$product->product_condition] ?? '不明';
 
-        // ログイン中ユーザーがこの商品をいいね済みかどうか
         $is_favorited = auth()->check() && auth()->user()->favorites->contains($product->id);
 
         return view('show', [

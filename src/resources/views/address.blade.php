@@ -25,7 +25,9 @@
 <div class="form-group">
                 <label>郵便番号</label>
                 @if ($user->profile)
-                  <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
+                  <input type="text" name="postal_code" value="{{ old('postal_code',
+                  $purchaseAddress['postal_code'] ??
+                  $user->profile->postal_code) }}">
                 @else
                   <input type="text" name="postal_code" value="">
                 @endif
@@ -35,7 +37,9 @@
 <div class="form-group">
                 <label>住所</label>
                 @if ($user->profile)
-                  <input type="text" name="address" value="{{ old('address', $user->profile->address) }}">
+                  <input type="text" name="address" value="{{ old('address',
+                  $purchaseAddress['address'] ??
+                  $user->profile->address) }}">
                 @else
                   <input type="text" name="address" value="">
                 @endif
@@ -45,7 +49,9 @@
 <div class="form-group">
                 <label>建物名</label>
                 @if ($user->profile)
-                  <input type="text" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
+                  <input type="text" name="building_name" value="{{ old('building_name',
+                  $purchaseAddress['building_name'] ??
+                  $user->profile->building_name) }}">
                 @else
                   <input type="text" name="building_name" value="">
                 @endif

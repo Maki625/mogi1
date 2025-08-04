@@ -28,17 +28,20 @@
         <h2 class="payment-title">支払い方法</h2>
         <select name="payment_method" id="productSelect">
             <option value="">選択してください</option>
-            <option value="コンビニ支払い" {{ old('payment_method') == '1' ? 'selected' : '' }}>コンビニ支払い</option>
-            <option value="カード支払い" {{ old('payment_method') == '2' ? 'selected' : '' }}>カード支払い</option>
+            <option value="コンビニ支払い" {{ (old('payment_method') ?? $selected_payment_method) == 'コンビニ支払い' ? 'selected' : '' }}>コンビニ支払い</option>
+            <option value="カード支払い" {{ (old('payment_method') ?? $selected_payment_method) == 'カード支払い' ? 'selected' : '' }}>カード支払い</option>
         </select>
 
         <h2 class="address-title">配送先</h2>
 
         <a class="address-url" href="/purchase/address/{{ $product->id }}">変更する</a>
 
-        <div class="postal-code">〒{{ old('postal_code', $user->profile->postal_code) }}</div>
-        <p class="address">{{ old('address', $user->profile->address) }}</p>
-        <p class="building_name">{{ old('building_name', $user->profile->building_name) }}</p>
+        <div class="postal-code">〒{{ $purchaseAddress['postal_code'] ??$user->profile->postal_code }}</div>
+        <p class="address">{{
+        $purchaseAddress['address'] ??$user->profile->address }}</p>
+        <p class="building_name">{{
+        $purchaseAddress['building_name'] ??
+        $user->profile->building_name }}</p>
     </div>
 
     <div class="payment-wrapper">
@@ -52,9 +55,10 @@
             <div id="selectedProductDisplay" class="selected-display"></div>
         </div>
 
-        <input type="hidden" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code) }}">
-        <input type="hidden" name="address" value="{{ old('address', $user->profile->address) }}">
-        <input type="hidden" name="building_name" value="{{ old('building_name', $user->profile->building_name) }}">
+        <input type="hidden" name="postal_code" value="{{ old('postal_code', $purchaseAddress['postal_code'] ?? $user->profile->postal_code) }}">
+        <input type="hidden" name="address" value="{{ old('address', $purchaseAddress['address'] ??$user->profile->address) }}">
+        <input type="hidden" name="building_name" value="{{ old('building_name',
+        $purchaseAddress['building_name'] ?? $user->profile->building_name) }}">
         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
         <button type="submit" name="purchase" class="purchase-btn" value="purchase">購入する</button>
@@ -62,28 +66,39 @@
 </form>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('productSelect');
-    const displayDiv = document.getElementById('selectedProductDisplay');
+const select = document.getElementById('productSelect');
+const displayDiv = document.getElementById('selectedProductDisplay');
 
-    if (select.value) {
-        displayDiv.textContent = select.value;
-    } else {
-        displayDiv.textContent = "支払い方法を選択してください";
-    }
-});
+// 初期表示
+const sessionValue = @json(session('selected_payment_method'));
+if (sessionValue) {
+    select.value = sessionValue;
+    displayDiv.textContent = sessionValue;
+} else {
+    displayDiv.textContent = "支払い方法を選択してください";
+}
 
-document.getElementById('productSelect').addEventListener('change', function() {
+// セレクト変更時の処理＋セッション保存
+select.addEventListener('change', function () {
     const selectedValue = this.value;
-    const displayDiv = document.getElementById('selectedProductDisplay');
+    displayDiv.textContent = selectedValue || "支払い方法を選択してください";
 
-    if (selectedValue) {
-        displayDiv.textContent = selectedValue;
-    } else {
-        displayDiv.textContent = "支払い方法を選択してください";
-    }
+    // AJAXでセッションに保存
+    fetch('/purchase/set-payment-method', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ payment_method: selectedValue })
+    }).then(response => {
+        if (!response.ok) {
+            console.error("セッション保存失敗");
+        }
+    });
 });
 </script>
+
 
 @endsection
 

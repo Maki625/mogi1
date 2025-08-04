@@ -76,3 +76,5 @@ Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit']);
 
 //住所変更処理
 Route::post('/purchase/address/{item_id}', [AddressController::class, 'update']);
+
+Route::post('/purchase/set-payment-method', [PurchaseController::class, 'setPaymentMethod']);

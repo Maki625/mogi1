@@ -17,10 +17,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        // 出品した商品
         $soldProducts = Product::where('user_id', $userId)->get();
 
-        // 購入した商品
         $boughtProducts = Product::whereHas('purchase', function($query) use ($userId) {
             $query->where('user_id', $userId);
         })->get();
@@ -40,7 +38,6 @@ class ProfileController extends Controller
 
     }
 
-    //更新処理
     public function update(ProfileRequest $request)
 {
     $user = auth()->user();
@@ -49,12 +46,10 @@ class ProfileController extends Controller
 
     // プロフィール画像がアップロードされた場合
     if ($request->hasFile('profile_image')) {
-        // 古い画像があれば削除（任意）
         if ($profile->profile_image) {
             Storage::delete('public/profile_images/' . $profile->profile_image);
         }
 
-        // 新しい画像の保存
         $image = $request->file('profile_image');
         $filename = time() . '.' . $image->getClientOriginalExtension();
         $path = $image->storeAs('public/profile_images', $filename);
@@ -62,11 +57,9 @@ class ProfileController extends Controller
         $profile->profile_image = $filename;
     }
 
-    // 他のプロフィール情報も更新（必要に応じて）
     $user->name = $request->input('name');
     $user->save();
 
-    // プロフィール情報の更新（なければ新規作成）
     $user->profile()->updateOrCreate(
         ['user_id' => $user->id],
         [
